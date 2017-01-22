@@ -14,6 +14,9 @@ public class BasicObservables {
         basicObservables.basicSubscribe();
     }
 
+    /**
+     * Creates an Observable<String> that emits two strings - "Hello" and "World"
+     */
     Observable<String> basicCreation() {
         throw new RuntimeException("Not implemented");
     }
@@ -31,10 +34,16 @@ public class BasicObservables {
         throw new RuntimeException("Not implemented");
     }
 
-    Observable<String> createFromFrom(List<String> list) {
+    /**
+     * Create a Observable<String> from the given list parameter
+     */
+    Observable<String> createFromList(List<String> list) {
         throw new RuntimeException("Not implemented");
     }
 
+    /**
+     * Create an Observable that throws an error.
+     */
     Observable<Integer> createError() {
         throw new RuntimeException("Not implemented");
     }

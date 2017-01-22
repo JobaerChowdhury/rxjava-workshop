@@ -4,7 +4,6 @@ import org.junit.Test;
 import rx.Observable;
 import rx.observers.TestSubscriber;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,7 +51,7 @@ public class TestBasicObservables {
     public void testCreateFromFrom() {
         BasicObservables basicObservables = new BasicObservables();
         List<String> stringList = Arrays.asList("I", "am", "learning", "rx");
-        Observable<String> observable = basicObservables.createFromFrom(stringList);
+        Observable<String> observable = basicObservables.createFromList(stringList);
         TestSubscriber<String> subscriber = new TestSubscriber<>();
         observable.subscribe(subscriber);
 
