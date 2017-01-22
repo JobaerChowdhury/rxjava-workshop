@@ -37,13 +37,11 @@ public class BasicObservables {
         return Observable.just(s1, s2);
     }
 
-    Observable<String> createFromFrom(List<String> list) {
-        return Observable.from(list);
     /**
      * Create a Observable<String> from the given list parameter
      */
     Observable<String> createFromList(List<String> list) {
-        throw new RuntimeException("Not implemented");
+        return Observable.from(list);
     }
 
     /**
