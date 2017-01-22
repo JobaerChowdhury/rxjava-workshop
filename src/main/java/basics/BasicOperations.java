@@ -2,8 +2,12 @@ package basics;
 
 import domain.Person;
 import rx.Observable;
+import service.PersonService;
 
 import java.util.List;
+import java.util.Optional;
+
+import static service.PersonService.getPersonById;
 
 /**
  * Few basic operations
@@ -14,26 +18,32 @@ public class BasicOperations {
     }
 
     Observable<Integer> filterEven(Observable<Integer> numbers) {
-        throw new RuntimeException("Not implemented");
+        return numbers.filter(num -> num % 2 == 0);
     }
 
     Observable<Person> filterBelowFifty(Observable<Person> persons) {
-        throw new RuntimeException("Not implemented");
+        return persons.filter(person -> person.getAge() < 50);
     }
 
     Observable<Person> getPerson(Integer id) {
-        throw new RuntimeException("Not implemented");
+        Person person = getPersonById(id);
+        return Observable.just(person);
     }
 
     Observable<Person> getPersons(List<Integer> idList) {
-        throw new RuntimeException("Not implemented");
+        return Observable.from(idList).map(PersonService::getPersonById);
     }
 
     Observable<Person> getPersonSafe(Integer id) {
-        throw new RuntimeException("Not implemented");
+        Optional<Person> personOptional = PersonService.mayGetPersonById(id);
+        if (personOptional.isPresent()) {
+            return Observable.just(personOptional.get());
+        } else {
+            return Observable.empty();
+        }
     }
 
     Observable<Person> getPersonsSafe(List<Integer> idList) {
-        throw new RuntimeException("Not implemented");
+        return Observable.from(idList).flatMap(this::getPersonSafe);
     }
 }
