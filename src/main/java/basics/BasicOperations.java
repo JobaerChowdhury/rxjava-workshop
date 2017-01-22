@@ -9,9 +9,6 @@ import java.util.List;
  * Few basic operations
  */
 public class BasicOperations {
-    public static void main(String[] args) {
-        System.out.println("Testing basic operations");
-    }
 
     Observable<Integer> filterEven(Observable<Integer> numbers) {
         throw new RuntimeException("Not implemented");
