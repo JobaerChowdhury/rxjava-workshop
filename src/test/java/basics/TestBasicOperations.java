@@ -22,7 +22,7 @@ public class TestBasicOperations {
         odds1.subscribe(subscriber);
 
         subscriber.assertNoErrors();
-        subscriber.assertValues(23, 11, 989);
+        subscriber.assertValues(12, 12, 22, 32);
         subscriber.assertCompleted();
     }
 
@@ -36,7 +36,7 @@ public class TestBasicOperations {
         result.subscribe(subscriber);
 
         subscriber.assertNoErrors();
-        subscriber.assertValueCount(2);
+        subscriber.assertValueCount(5);
         subscriber.assertCompleted();
     }
 
