@@ -3,7 +3,6 @@ package intermediate;
 import domain.Article;
 import domain.PersistentArticle;
 import rx.Observable;
-import service.ArticleService;
 
 import static helpers.ImplementationHelper.sleep;
 import static service.ArticleService.fetchLikeCount;
@@ -32,7 +31,7 @@ public class ComposeObservables {
                                 lc -> Observable.just(new Article(dbArticle, lc)))));
     }
 
-    Observable<Article> searchV3(String query) {
+    Observable<Article> searchUsingZip(String query) {
         return searchForArticles(query).flatMap(id -> {
             Observable<PersistentArticle> dbArticle = loadArticle(id);
             Observable<Integer> likeCount = fetchLikeCount(id);
@@ -43,7 +42,9 @@ public class ComposeObservables {
     public static void main(String[] args) {
         System.out.println("Testing intermediate compositions....");
         ComposeObservables service = new ComposeObservables();
-        service.searchV3("test").subscribe(System.out::println);
-        sleep(3000);
+        service.search("test").subscribe(s -> {}, s -> {}, () -> {
+            System.out.println("Completed");
+        });
+        sleep(4000);
     }
 }
