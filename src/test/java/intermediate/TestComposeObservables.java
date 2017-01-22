@@ -26,7 +26,7 @@ public class TestComposeObservables {
     @Test
     public void testAlternateSearch() {
         ComposeObservables observables = new ComposeObservables();
-        Observable<Article> searchResult = observables.searchV2("something");
+        Observable<Article> searchResult = observables.search("something");
         assertSearchProperties(searchResult);
     }
 

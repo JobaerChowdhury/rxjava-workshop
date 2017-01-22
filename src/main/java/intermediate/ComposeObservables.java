@@ -1,21 +1,15 @@
 package intermediate;
 
 import domain.Article;
-import domain.PersistentArticle;
 import rx.Observable;
 
 import static helpers.ImplementationHelper.sleep;
-import static service.ArticleService.*;
 
 /**
  * Intermediate compositions
  */
 public class ComposeObservables {
     Observable<Article> search(String query) {
-        throw new RuntimeException("Not implemented");
-    }
-
-    Observable<Article> searchV2(String query) {
         throw new RuntimeException("Not implemented");
     }
 
