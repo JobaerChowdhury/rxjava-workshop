@@ -7,6 +7,8 @@ import service.PersonService;
 import java.util.List;
 import java.util.Optional;
 
+import static service.PersonService.getPersonById;
+
 /**
  * Few basic operations
  */
@@ -16,33 +18,32 @@ public class BasicOperations {
     }
 
     Observable<Integer> filterEven(Observable<Integer> numbers) {
-        return numbers.filter(n -> n % 2 != 0);
+        return numbers.filter(num -> num % 2 == 0);
     }
 
     Observable<Person> filterBelowFifty(Observable<Person> persons) {
-        return persons.filter(p -> p.getAge() > 50);
+        return persons.filter(person -> person.getAge() < 50);
     }
 
     Observable<Person> getPerson(Integer id) {
-        return Observable.just(id).map(i -> PersonService.getPersonById(i));
+        Person person = getPersonById(id);
+        return Observable.just(person);
     }
 
     Observable<Person> getPersons(List<Integer> idList) {
-        return Observable.from(idList).map(id -> PersonService.getPersonById(id));
+        return Observable.from(idList).map(PersonService::getPersonById);
     }
 
     Observable<Person> getPersonSafe(Integer id) {
-        return Observable.just(id).flatMap(i -> {
-            Optional<Person> person = PersonService.mayGetPersonById(i);
-            if (person.isPresent()) {
-                return Observable.just(person.get());
-            } else {
-                return Observable.empty();
-            }
-        });
+        Optional<Person> personOptional = PersonService.mayGetPersonById(id);
+        if (personOptional.isPresent()) {
+            return Observable.just(personOptional.get());
+        } else {
+            return Observable.empty();
+        }
     }
 
     Observable<Person> getPersonsSafe(List<Integer> idList) {
-        return Observable.from(idList).flatMap(id -> getPersonSafe(id));
+        return Observable.from(idList).flatMap(this::getPersonSafe);
     }
 }

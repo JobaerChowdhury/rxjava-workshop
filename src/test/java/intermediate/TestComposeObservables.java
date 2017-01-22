@@ -26,7 +26,7 @@ public class TestComposeObservables {
     @Test
     public void testAlternateSearch() {
         ComposeObservables observables = new ComposeObservables();
-        Observable<Article> searchResult = observables.searchV2("something");
+        Observable<Article> searchResult = observables.search("something");
         assertSearchProperties(searchResult);
     }
 
@@ -49,6 +49,9 @@ public class TestComposeObservables {
             int id = article.getId();
             int likeCount = article.getLikeCount();
             assertEquals(id * 10, likeCount);
+
+            String title = "Article title " + id;
+            assertEquals(title, article.getTitle());
         });
     }
 }

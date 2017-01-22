@@ -40,7 +40,7 @@ public class BasicObservables {
 
     Observable<Integer> createError() {
         return Observable.create(subscriber -> {
-           subscriber.onError(new RuntimeException("Error occurred"));
+            subscriber.onError(new RuntimeException("Observable creation failed!"));
         });
     }
 }
