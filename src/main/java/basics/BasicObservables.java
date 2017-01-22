@@ -15,7 +15,10 @@ public class BasicObservables {
     }
 
     Observable<String> basicCreation() {
-        throw new RuntimeException("Not implemented");
+        return Observable.create(subscriber -> {
+            subscriber.onNext("Hello");
+            subscriber.onNext("World");
+        });
     }
 
     void basicSubscribe() {
@@ -24,18 +27,20 @@ public class BasicObservables {
     }
 
     Observable<String> createFromJust1(String s) {
-        throw new RuntimeException("Not implemented");
+        return Observable.just(s);
     }
 
     Observable<String> createFromJust2(String s1, String s2) {
-        throw new RuntimeException("Not implemented");
+        return Observable.just(s1, s2);
     }
 
     Observable<String> createFromFrom(List<String> list) {
-        throw new RuntimeException("Not implemented");
+        return Observable.from(list);
     }
 
     Observable<Integer> createError() {
-        throw new RuntimeException("Not implemented");
+        return Observable.create(subscriber -> {
+            subscriber.onError(new RuntimeException("Observable creation failed!"));
+        });
     }
 }
