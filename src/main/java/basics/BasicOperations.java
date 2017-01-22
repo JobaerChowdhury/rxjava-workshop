@@ -13,9 +13,6 @@ import static service.PersonService.getPersonById;
  * Few basic operations
  */
 public class BasicOperations {
-    public static void main(String[] args) {
-        System.out.println("Testing basic operations");
-    }
 
     Observable<Integer> filterEven(Observable<Integer> numbers) {
         return numbers.filter(num -> num % 2 == 0);
