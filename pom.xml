@@ -51,25 +51,5 @@
 
     <build>
         <finalName>rxtest</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.5.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <!--<configuration>-->
-                    <!--<mainClass>com.example.Main</mainClass>-->
-                    <!--<arguments>-->
-                        <!--<argument>argument1</argument>-->
-                    <!--</arguments>-->
-                <!--</configuration>-->
-            </plugin>
-        </plugins>
     </build>
 </project>
