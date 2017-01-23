@@ -3,16 +3,15 @@ package concurrency;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
-import java.util.Random;
+import static helpers.ImplementationHelper.randInt;
+import static helpers.ImplementationHelper.sleep;
+import static helpers.ImplementationHelper.threadName;
 
 /**
  * Example of parallel processing.
  * Details on - http://tomstechnicalblog.blogspot.com/2015/11/rxjava-achieving-parallelization.html
  */
 public final class ParallelTest {
-
-    private static final Random rand = new Random();
-
     public static void main(String[] args) {
         parallel2();
     }
@@ -26,7 +25,7 @@ public final class ParallelTest {
                         + val + " on "
                         + threadName()));
 
-        waitSleep();
+        sleep(10000);
     }
 
     private static void parallel2() {
@@ -38,7 +37,7 @@ public final class ParallelTest {
                 .toList()
                 .subscribe(
                         val -> System.out.println("Subscriber received " + val + " on " + threadName()));
-        waitSleep();
+        sleep(10000);
     }
 
     private static void sequentialOnThread() {
@@ -47,7 +46,6 @@ public final class ParallelTest {
                 .map(ParallelTest::intenseCalculation).subscribe(val -> {
             System.out.println("Subscriber received " + val + " on " + threadName());
         });
-//        waitSleep();
     }
 
     private static void sequentialProcessing() {
@@ -57,19 +55,7 @@ public final class ParallelTest {
         });
     }
 
-    private static String threadName() {
-        return Thread.currentThread().getName();
-    }
-
-    public static void waitSleep() {
-        try {
-            Thread.sleep(20000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int intenseCalculation(int i) {
+    private static int intenseCalculation(int i) {
         try {
             System.out.println("Calculating " + i + " on " + threadName());
             Thread.sleep(randInt(500, 2000));
@@ -77,9 +63,5 @@ public final class ParallelTest {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static int randInt(int min, int max) {
-        return rand.nextInt((max - min) + 1) + min;
     }
 }
