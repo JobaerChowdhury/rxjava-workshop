@@ -32,15 +32,10 @@ public class BasicOperations {
     }
 
     Observable<Person> getPersonSafe(Integer id) {
-        Optional<Person> personOptional = PersonService.mayGetPersonById(id);
-        if (personOptional.isPresent()) {
-            return Observable.just(personOptional.get());
-        } else {
-            return Observable.empty();
-        }
+        throw new RuntimeException("Todo");
     }
 
     Observable<Person> getPersonsSafe(List<Integer> idList) {
-        return Observable.from(idList).flatMap(this::getPersonSafe);
+        throw new RuntimeException("Todo");
     }
 }
