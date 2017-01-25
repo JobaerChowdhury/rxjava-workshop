@@ -2,8 +2,6 @@ package advanced;
 
 import rx.Observable;
 
-import java.time.LocalDate;
-
 import static helpers.ImplementationHelper.sleep;
 
 /**

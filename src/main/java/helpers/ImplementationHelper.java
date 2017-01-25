@@ -19,6 +19,15 @@ public class ImplementationHelper {
         }
     }
 
+    public static void randomSleep(int min, int max) {
+        try {
+            int random = random(min, max);
+            Thread.sleep(random);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static <T> Observable<T> withRandomDelay(Observable<T> sourceObservable) {
         int randomDelay = ThreadLocalRandom.current().nextInt(500, 1000);
         return sourceObservable.delay(randomDelay, TimeUnit.MILLISECONDS);
