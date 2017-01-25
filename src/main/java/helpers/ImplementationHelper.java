@@ -23,4 +23,8 @@ public class ImplementationHelper {
         int randomDelay = ThreadLocalRandom.current().nextInt(500, 1000);
         return sourceObservable.delay(randomDelay, TimeUnit.MILLISECONDS);
     }
+
+    public static int random(int min, int max) {
+        return ThreadLocalRandom.current().nextInt(min, max);
+    }
 }
