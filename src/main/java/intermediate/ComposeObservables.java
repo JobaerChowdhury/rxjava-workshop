@@ -11,16 +11,11 @@ import static service.ArticleService.*;
  */
 public class ComposeObservables {
     Observable<Article> search(String query) {
-        return searchForArticles(query).flatMap(
-            id -> loadArticle(id).flatMap(
-                pa -> fetchLikeCount(id).flatMap(
-                    lc -> Observable.just(new Article(pa, lc)))));
+        throw new RuntimeException("Todo");
     }
 
     Observable<Article> searchUsingZip(String query) {
-        Observable<Integer> integerObservable = searchForArticles(query);
-        return integerObservable.flatMap(
-            id -> Observable.zip(loadArticle(id), fetchLikeCount(id), (pa, lc) -> new Article(pa, lc)));
+        throw new RuntimeException("Todo");
     }
 
     public static void main(String[] args) {
